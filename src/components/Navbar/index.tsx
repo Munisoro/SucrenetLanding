@@ -29,24 +29,16 @@ function Navbar() {
         })
 
         window.addEventListener('scroll', () => {
-            const add = () => {
+            if (window.scrollY > 45) {
                 if (!ele.classList.contains("bg-white") || !ele.classList.contains("shadow")) {
                     ele.classList.add("bg-white", "shadow");
                     if (window.innerWidth >= 992) ele.style.top = "-45px";
                 }
-            }
-
-            const remove = () => {
+            } else {
                 if (ele.classList.contains("bg-white") && ele.classList.contains("shadow")) {
                     ele.classList.remove("bg-white", "shadow");
                     if (window.innerWidth >= 992) ele.style.top = "0px";
                 }
-            }
-
-            if (window.scrollY > 45) {
-                add();
-            } else {
-                remove();
             }
         });
     }, []);
