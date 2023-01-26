@@ -4,6 +4,7 @@ import { faMapMarkerAlt, faPhone, faEnvelope } from "@fortawesome/free-solid-svg
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { facebook, twitter } from '../../data/social';
+import { links } from "data/links";
 
 function Footer() {
 
@@ -15,7 +16,7 @@ function Footer() {
                     <Col lg='6'>
                         <h4 className="text-white mb-4">Nuestra Oficina</h4>
                         <p className="mb-2"><FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" />Calle Ayacucho cruce con Boyacá, Edificio Adis Local N°2. Cumaná, estado sucre.</p>
-                        <p className="mb-2"><FontAwesomeIcon icon={faPhone} className="me-3" />+012 345 67890</p>
+                        <p className="mb-2"><FontAwesomeIcon icon={faPhone} className="me-3" />0412 574 7634</p>
                         <p className="mb-2"><FontAwesomeIcon icon={faEnvelope} className="me-3" />info@sucrenet.com.ve</p>
                         <div className="d-flex pt-2">
                             <a className="btn btn-square btn-outline-light rounded-circle me-2" href={twitter}>
@@ -26,13 +27,12 @@ function Footer() {
                             </a>
                         </div>
                     </Col>
-                    <Col lg={{span:3,offset:3}}>
+                    <Col lg={{ span: 3, offset: 3 }}>
                         <div className="">
                             <h4 className="text-white mb-4">Enlaces</h4>
-                            <Link to='/nosotros' className="btn btn-link">Nosotros</Link>
-                            <Link to='/planes' className="btn btn-link">Nuestros planes</Link>
-                            <Link to='/contactenos' className="btn btn-link">Contáctenos</Link>
-                            <Link to='/' className="btn btn-link">Terminos y Condiciones</Link>
+                            {links.map((enlace, i) => (
+                                <Link key={i.toString()} to={enlace.link} className="btn btn-link">{enlace.name}</Link>
+                            ))}
                         </div>
                     </Col>
                 </Row>

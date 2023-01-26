@@ -5,6 +5,7 @@ import Nosotros from './Nosotros';
 import Contactanos from './Contactanos';
 import Servicios from './Servicios';
 import ErrorFound from './ErrorFound';
+import Pagos from './Pagos';
 
 const routeConfig = createBrowserRouter([{
     element: <Layout />,
@@ -21,6 +22,10 @@ const routeConfig = createBrowserRouter([{
         {
             path: 'planes',
             element: <Servicios />
+        },
+        {
+            path: 'pagos',
+            element: <Pagos />
         },
         {
             path: 'contactanos',
