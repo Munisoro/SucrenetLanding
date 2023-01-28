@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faClock, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { Container, Row, Col, Navbar as NavbarReact, Nav } from "react-bootstrap";
+import { Container, Navbar as NavbarReact, Nav } from "react-bootstrap";
 import { facebook, twitter } from "data/social";
 import { links } from "data/links";
 
@@ -11,20 +10,28 @@ function Navbar() {
     const { pathname } = useLocation();
 
     const fixedTop = useRef<HTMLDivElement>(null);
+    const image = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         if (!fixedTop.current) return;
 
         const ele = fixedTop.current;
+
+        if (!image.current) return;
+
+        const sucrenetImg = image.current;
         
         if (window.innerWidth < 992) {
+            sucrenetImg.style.width = '150px';
             if (ele.classList.contains('fixed-top')) ele.classList.remove('fixed-top');
         }
 
         window.addEventListener('resize', () => {
             if (window.innerWidth < 992) {
-                if (ele.classList.contains('fixed-top')) ele.classList.remove('fixed-top');
+                sucrenetImg.style.width = '150px';
+            if (ele.classList.contains('fixed-top')) ele.classList.remove('fixed-top');
             } else {
+                sucrenetImg.style.width = '290px';
                 if (!ele.classList.contains('fixed-top')) ele.classList.add('fixed-top');
             }            
         })
@@ -33,12 +40,10 @@ function Navbar() {
             if (window.scrollY > 45) {
                 if (!ele.classList.contains("bg-white") || !ele.classList.contains("shadow")) {
                     ele.classList.add("bg-white", "shadow");
-                    if (window.innerWidth >= 992) ele.style.top = "-45px";
                 }
             } else {
                 if (ele.classList.contains("bg-white") && ele.classList.contains("shadow")) {
                     ele.classList.remove("bg-white", "shadow");
-                    if (window.innerWidth >= 992) ele.style.top = "0px";
                 }
             }
         });
@@ -46,20 +51,11 @@ function Navbar() {
     
     return (
         <Container fluid className="fixed-top px-0 wow fadeIn" data-wow-delay="0.1s" ref={fixedTop}>
-            <Row className='top-bar gx-0 align-items-center d-none d-lg-flex'>
-                <Col lg='6' className='px-5 text-start'>
-                    <small><FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary me-2" />Edificio Adis Local N°2. Cumaná, estado Sucre.</small><br/>
-                    <small className=""><FontAwesomeIcon icon={faClock} className="text-primary me-2" />8:30am – 05:00pm</small>
-                </Col>
-                <Col lg='6' className='px-5 text-end'>
-                    <small><FontAwesomeIcon icon={faEnvelope} className="text-primary me-2" />info@sucrenet.com.ve</small>
-                    <small className="ms-4"><FontAwesomeIcon icon={faPhone} className="text-primary me-2" />0412 574 7634</small>
-                </Col>
-            </Row>
+            
 
             <NavbarReact expand='lg' className="py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
                 <NavbarReact.Brand as={Link} to='/' className="ms-4 ms-lg-0" >
-                    <img src='img/logo.png' alt="logo" className=" display-5 m-0" style={{width: '150px'}} />
+                    <img ref={image} src='img/logo.png' alt="logo" className="m-0" style={{width: '290px'}} />
                 </NavbarReact.Brand>
 
                 <NavbarReact.Toggle className="m-4">

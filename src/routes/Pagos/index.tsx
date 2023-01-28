@@ -1,27 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
-const data = [
-    ['Banco Banesco', '0134-0471-21-4711041228'],
-];
-
-const soporte = [
-    ['Whatsapp', '04125747634'],
-    ['Correo', 'info@sucrenet.com.ve'],
-];
+import WhatsappBtn from "components/WhatsappBtn";
+import { paymentData } from "data";
 
 const items = [
     'Captura de pantalla del pago',
-    'Cédula de identidad del titular del contrato',
-    'Cédula de identidad del titular quien realizó la transferencia',
-    'Referencia de pago'
+    'N° de Cédula de identidad o RIF del titular del contrato',
+    'N° de Cédula de identidad o RIF del titular quien realizó la transferencia',
+    'N° de Referencia de pago'
 ];
 
-//fetch('https://www.bcv.org.ve/tasas-informativas-sistema-bancario', {mode: 'no-cors', referrerPolicy: "no-referrer"}).then(owo => console.log(owo))
 function Pagos() {
+    const [price, setPrice] = useState('Cargando...');
+    useEffect(() => {
+        fetch('/getpriceofdolar.php').then(resp => resp.text())
+            .then(text => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+
+                let precio = doc.querySelector('#dolar .centrado')?.textContent
+
+                if (precio) {
+
+                    precio = `1$ = ${precio.trim().slice(0, 5)} Bs`
+                } else {
+                    precio = 'A la tasa oficial BCV del día';
+                }
+
+                setPrice(precio);
+            });
+    }, []);
+
     return (
         <>
             <Header title='Pagos' />
@@ -33,7 +45,7 @@ function Pagos() {
                             <h4>Banco Central de Venezuela</h4>
 
                             <img src="img/bcv.png" width='150px' alt="Banco Central de Venezuela" />
-                            <div className="my-2">A la tasa oficial BCV del día</div>
+                            <div className="my-2">{price}</div>
 
                         </div>
 
@@ -41,19 +53,25 @@ function Pagos() {
                             <h4 className="text-center my-5">Ponte al día con nuestras opciones de pago:</h4>
                             <Card>
                                 <ListGroup>
-                                    <ListGroup.Item>
-                                        {data.map(([a, b], i) => (
-                                            <p key={i.toString()}><span className="text-primary">{a}</span>: {b}</p>
-                                        ))}
-                                    </ListGroup.Item>
-
-                                    <ListGroup.Item>
-
-                                        <p>Soporte:</p>
-                                        {soporte.map(([a, b], i) => (
-                                            <p key={i.toString()}><span className="text-primary">{a}</span>: {b}</p>
-                                        ))}
-                                    </ListGroup.Item>
+                                    {paymentData.map(({ name, img, imgClass, account, Value, rif }) => (
+                                        <ListGroup.Item key={name}>
+                                            <Row>
+                                                <Col sm={img ? '9' : '12'}>
+                                                    <h4 className="text-primary">{name}:</h4> {!Value && '(Solicitar información)'}
+                                                    {rif && (<p>{rif}</p>)}
+                                                    {account && (<p>{account}</p>)}
+                                                    {Value && (typeof Value === 'string' ? Value : <Value info/>)}
+                                                </Col>
+                                                {img && (
+                                                    <Col sm='3'>
+                                                        <div>
+                                                            <img src={`img/${img}`} alt={name} className={`w-100 ${imgClass || ''}`} />
+                                                        </div>
+                                                    </Col>
+                                                )}
+                                            </Row>
+                                        </ListGroup.Item>
+                                    ))}
                                 </ListGroup>
                             </Card>
                         </div>
@@ -65,15 +83,33 @@ function Pagos() {
                 <Container className="pt-5">
                     <Row className="justify-content-center">
                         <Col lg='7'>
-                            <div className="bg-white border rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.5s">
-                                <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '600px' }}>
+                            <div className="bg-white border rounded p-4 p-sm-5">
+                                <div className="text-center mx-auto" style={{ maxWidth: '600px' }}>
                                     <p className="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">
                                         ¿Cómo reporto el pago?
-
                                     </p>
-                                    <h4>Reporta al soporte la siguiente información:</h4>
                                 </div>
+
                                 <Card className="mt-4">
+                                    <Card.Header>Envianos al:</Card.Header>
+                                    <Card.Body>
+                                        <p>
+                                            <span className="text-primary">Whatsapp: </span>
+                                        </p>
+                                        <p>
+                                            <WhatsappBtn />
+                                            <span className="ms-2" >o al correo: info@sucrenet.com.ve</span>
+                                        </p>
+                                    </Card.Body>
+                                </Card>
+
+                                <div className="text-center mx-auto my-4" style={{ maxWidth: '600px' }}>
+                                    <p className="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">
+                                        La siguiente información:
+                                    </p>
+                                </div>
+
+                                <Card>
                                     <ListGroup>
                                         {items.map((item, i) => (
                                             <ListGroup.Item key={i.toString()}>

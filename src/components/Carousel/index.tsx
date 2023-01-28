@@ -7,7 +7,7 @@ function Carousel() {
         <Container fluid className="p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
             <CarouselReact fade indicators={false}>
                 <CarouselReact.Item>
-                    <img className="w-100" src="img/carousel-1.jpg" alt="Image1" />
+                    <img className="w-100" src="img/carousel-1.png" alt="Image1" />
                     <CarouselReact.Caption>
                         <Container>
                             <Row className="justify-content-start">
@@ -18,9 +18,6 @@ function Carousel() {
                                     <h2 className="display-2 mb-4 animated slideInDown">
                                         Infraestructura tecnológica de alta calidad
                                     </h2>
-                                    <p className="d-none d-lg-block text-dark animated slideInDown">Disponemos de una infraestructura tecnológica de Fibra Óptica y enlaces
-                                        inalámbricos de alta calidad, que nos permite llegar a nuestros clientes con las
-                                        más altas tasas de transferencia de datos.</p>
                                 </Col>
                             </Row>
                         </Container>
@@ -28,7 +25,7 @@ function Carousel() {
                 </CarouselReact.Item>
 
                 <CarouselReact.Item>
-                    <img className="w-100" src="img/carousel-2.jpg" alt="Image2" />
+                    <img className="w-100" src="img/carousel-2.png" alt="Image2" />
                     <CarouselReact.Caption>
                         <Container>
                             <Row>
@@ -37,8 +34,6 @@ function Carousel() {
                                         className="d-inline-block border border-white rounded text-primary fw-semi-bold py-1 px-3 animated slideInDown">
                                         Bienvenido a Sucrenet</p>
                                     <h2 className="display-2 mb-4 animated slideInDown">Servicio confiable y seguro</h2>
-                                    <p className="d-none d-lg-block text-dark animated slideInDown">Garantizamos un elevado nivel de confiabilidad, seguridad y disponibilidad sin
-                                        interrupciones ni paradas en los sistemas de conexión.</p>
                                 </Col>
                             </Row>
                         </Container>
@@ -46,7 +41,7 @@ function Carousel() {
                 </CarouselReact.Item>
 
                 <CarouselReact.Item>
-                    <img className="w-100" src="img/carousel-1.jpg" alt="Image3" />
+                    <img className="w-100" src="img/carousel-3.png" alt="Image3" />
                     <CarouselReact.Caption>
                         <Container>
                             <Row>
@@ -55,9 +50,6 @@ function Carousel() {
                                         className="d-inline-block border border-white rounded text-primary fw-semi-bold py-1 px-3 animated slideInDown">
                                         Bienvenido a Sucrenet</p>
                                     <h2 className="display-2 mb-4 animated slideInDown">Soporte técnico: 24 horas del dia</h2>
-                                    <p className="d-none d-lg-block text-dark animated slideInDown">Contamos con
-                                        un personal capacitado y comprometido con brindarte el mejor servicio: rápido,
-                                        estable y seguro</p>
                                 </Col>
                             </Row>
                         </Container>
