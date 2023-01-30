@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRocket, faUsers, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 function About() {
+
+
     return (
-        <Container fluid='xxl' className='py-5'>
+        <Container fluid='xxl'>
             <Container>
-                <Row className="g-4 align-items-end mb-4">
+                <Row className="g-4 mb-4">
                     <Col lg='6' className='wow fadeInUp' data-wow-delay='0.1s'>
                         <img className="img-fluid rounded" src="img/about.jpg" alt="uwu" />
                     </Col>

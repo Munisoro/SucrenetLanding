@@ -10,4 +10,7 @@ export const links = [{
 },{
     link: '/pagos',
     name: 'Pagos'
+},{
+    link: '/soporte',
+    name: 'Soporte'
 }]

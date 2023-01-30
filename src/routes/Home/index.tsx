@@ -4,6 +4,7 @@ import About from 'components/About';
 import Layout from "components/Layout";
 
 function Home() {
+
     return (
         <Layout>
             <Carousel />
