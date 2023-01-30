@@ -1,13 +1,17 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faToolbox } from "@fortawesome/free-solid-svg-icons";
+/*
+import { FC, useState, useEffect } from "react";
 import {  faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Container } from 'react-bootstrap';
 import { Plan, domesticData, businessData } from '../../data/index';
 import Plans from "components/Plans";
 import SelectPlans from "components/SelectPlans";
 import { useLocation } from 'react-router-dom';
-import { faToolbox } from "@fortawesome/free-solid-svg-icons";
+*/
 
+/*
 interface Info {
     title: string,
     content: string
@@ -98,6 +102,7 @@ const ServiceBackup: FC = () => {
         </Container>
     );
 }
+*/
 
 const Service: FC =  () => (
     <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">

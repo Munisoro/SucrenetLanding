@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import WhatsappBtn from "components/WhatsappBtn";
 import { paymentData } from "data";
+import Layout from "components/Layout";
 
 const items = [
     'Captura de pantalla del pago',
@@ -35,7 +36,7 @@ function Pagos() {
     }, []);
 
     return (
-        <>
+        <Layout>
             <Header title='Pagos' />
             <Container fluid>
                 <Container>
@@ -123,7 +124,7 @@ function Pagos() {
                     </Row>
                 </Container>
             </Container>
-        </>
+        </Layout>
     );
 }
 
